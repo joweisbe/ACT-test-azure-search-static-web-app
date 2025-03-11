@@ -19,6 +19,7 @@ namespace WebSearch.Function
         private static string searchApiKey = Environment.GetEnvironmentVariable("SearchApiKey", EnvironmentVariableTarget.Process);
         private static string searchServiceName = Environment.GetEnvironmentVariable("SearchServiceName", EnvironmentVariableTarget.Process);
         private static string searchIndexName = Environment.GetEnvironmentVariable("SearchIndexName", EnvironmentVariableTarget.Process) ?? "good-books";
+        private static string userAssignedClientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID", EnvironmentVariableTarget.Process);
 
         private readonly ILogger<Lookup> _logger;
 
@@ -39,8 +40,6 @@ namespace WebSearch.Function
             Uri serviceEndpoint = new($"https://{searchServiceName}.search.windows.net/");
 
  //           DefaultAzureCredential credential = new DefaultAzureCredential();
-
-              string userAssignedClientId = "99a07e21-dc9c-4107-99a0-25a8f301f919";
 
               var credential = new DefaultAzureCredential(
               new DefaultAzureCredentialOptions

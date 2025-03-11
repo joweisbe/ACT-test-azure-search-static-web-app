@@ -17,7 +17,7 @@ namespace WebSearch.Function
         private static string searchApiKey = Environment.GetEnvironmentVariable("SearchApiKey", EnvironmentVariableTarget.Process);
         private static string searchServiceName = Environment.GetEnvironmentVariable("SearchServiceName", EnvironmentVariableTarget.Process);
         private static string searchIndexName = Environment.GetEnvironmentVariable("SearchIndexName", EnvironmentVariableTarget.Process) ?? "good-books";
-
+        private static string userAssignedClientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID", EnvironmentVariableTarget.Process);
         private readonly ILogger<Lookup> _logger;
 
         public Lookup(ILogger<Lookup> logger)
@@ -38,8 +38,6 @@ namespace WebSearch.Function
 
             // Azure AI Search 
             Uri serviceEndpoint = new($"https://{searchServiceName}.search.windows.net/");
-
-              string userAssignedClientId = "99a07e21-dc9c-4107-99a0-25a8f301f919";
 
               var credential = new DefaultAzureCredential(
               new DefaultAzureCredentialOptions

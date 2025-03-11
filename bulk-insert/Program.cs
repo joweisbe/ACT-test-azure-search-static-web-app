@@ -1,5 +1,6 @@
 ﻿
 using Azure;
+using Azure.Identity;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Indexes.Models;
@@ -13,10 +14,17 @@ const string SEARCH_INDEX_NAME = "good-books";
 
 Uri searchEndpointUri = new(SEARCH_ENDPOINT);
 
+DefaultAzureCredential credential = new DefaultAzureCredential();
+
 SearchClient client = new(
     searchEndpointUri,
     SEARCH_INDEX_NAME,
-    new AzureKeyCredential(SEARCH_KEY));
+    credential);
+
+//SearchClient client = new(
+//    searchEndpointUri,
+//    SEARCH_INDEX_NAME,
+//    new AzureKeyCredential(SEARCH_KEY));
 
 SearchIndexClient clientIndex = new(
     searchEndpointUri,

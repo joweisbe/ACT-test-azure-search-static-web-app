@@ -37,11 +37,14 @@ namespace WebSearch.Function
             // Azure AI Search 
             Uri serviceEndpoint = new($"https://{searchServiceName}.search.windows.net/");
 
-              var credential = new DefaultAzureCredential(
-              new DefaultAzureCredentialOptions
-               {
-                   ManagedIdentityClientId = userAssignedClientId
-               });
+            //   var credential = new DefaultAzureCredential(
+            //   new DefaultAzureCredentialOptions
+            //    {
+            //        ManagedIdentityClientId = userAssignedClientId
+            //    });
+
+            var credential = new DefaultAzureCredential();
+            var client = new SearchClient(serviceEndpoint, searchIndexName, credential);  
 
               SearchClient searchClient = new(
                   serviceEndpoint,

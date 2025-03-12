@@ -41,11 +41,14 @@ namespace WebSearch.Function
 
  //           DefaultAzureCredential credential = new DefaultAzureCredential();
 
-              var credential = new DefaultAzureCredential(
-              new DefaultAzureCredentialOptions
-               {
-                   ManagedIdentityClientId = userAssignedClientId
-               });
+            //   var credential = new DefaultAzureCredential(
+            //   new DefaultAzureCredentialOptions
+            //    {
+            //        ManagedIdentityClientId = userAssignedClientId
+            //    });
+
+            var credential = new DefaultAzureCredential();
+            var client = new SearchClient(serviceEndpoint, searchIndexName, credential);            
 
             SearchClient searchClient = new(
                 serviceEndpoint,
